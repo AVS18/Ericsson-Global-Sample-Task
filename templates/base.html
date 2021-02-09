@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    <title>Ericsson</title>
+</head>
+<body>
+    <div class="alert alert-info">
+        <h5>Please follow these Instructions for proper execution</h5>
+        <ol>
+            <li>I am using adjacency matrix graph representation. Algorithm used Floyd Warshall(2 Reasons; All source shortest path. Negative weight support)</li>
+            <li>Enter the edge weights to compute. If there is no edge kindly use -. Enter spaces between weights</li>
+            <li>Sample Input 1<br>0 5<br>- 0<br>This represents a directed edge between vertex 0 and 1 with weight 5. from vertex 1 to 0 there is no vertex. Use - if there is no vertex.</li>
+            <li>Sample Input 2<br>0 5<br>5 0<br>This represents a undirected edge between vertex 0 and 1 with weight 5.</li>
+        </ol>
+        <p style="text-align: center;">Submitted by A V S ADITYAVARDHAN - 2018BCS0002 - avsadityavardhan18bcs@iiitkottayam.ac.in</p>
+    </div>
+    <div class="container-fluid">
+        {% if messages %}
+        {% for message in messages %}
+        <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+          <div class="alert alert-danger" role="alert">
+            {{message}} 
+          </div>
+        </div>
+        {% endfor %}
+      {%endif%}
+    </div>
+    <div class="container">
+        <form action="/calculate" method="POST">
+            {%csrf_token%}
+            <div class="row">
+                <div class="col-sm form-group">
+                    <label for="size">No. of Vertices</label>
+                    <input class="form-control" type="number" min="0" name="vertex" id="vertex" required>
+                </div>    
+            </div><br>
+            <div class="row">
+                <div class="col-sm form-group">
+                    <label for="matrix">Enter the Adjacency Matrix</label>
+                    <textarea name="graph" class="form-control" id="graph" cols="30" rows="5" required></textarea>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="sv">Source Vertex</label>
+                        <input type="number" class="form-control" min="0" name="sv">
+                        <small>0 based index</small>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="sv">Destination Vertex</label>
+                        <input type="number" class="form-control" min="0" name="dv">
+                        <small>0 based index</small>
+                    </div>
+                </div>
+            </div><br>
+            <input type="submit" value="Calculate" class="btn btn-primary">
+        </form>    
+    </div>
+</body>
+</html>
